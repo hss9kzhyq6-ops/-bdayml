@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Lavender Love, My Sweeteart✨ Happy 17th Birthday Irene❤️‍🔥</title>
+    <title>My Lavender Love, My Sweetheart✨ Happy 17th Birthday Irene❤️‍🔥</title>
     <link href="https://fonts.googleapis.com/css2?family=Satisfy&family=Josefin+Sans:wght@300;400;600;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
@@ -197,6 +197,7 @@
             box-shadow: 0 15px 40px rgba(156, 120, 192, 0.2);
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+            cursor: pointer;
         }
 
         .photo-frame:hover {
@@ -218,6 +219,7 @@
             opacity: 1;
         }
 
+        /* IMPROVED: Photo container that handles any image size/type */
         .photo-container {
             width: 100%;
             height: 350px;
@@ -226,30 +228,32 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Satisfy', cursive;
-            font-size: 1.4em;
-            color: var(--lavender-4);
-            text-align: center;
-            padding: 20px;
+            overflow: hidden;
+            position: relative;
             margin-bottom: 15px;
         }
 
-        .photo-container1 {
+        /* IMPROVED: Image styling that works for all sizes and types */
+        .photo-container img {
             width: 100%;
-            height: 350px;
-            background: url(Screenshot 2026-02-10 at 22.10.30 copy.jpeg);
-            background-align: center;
-            background-repeat: no-repeat;
+            height: 100%;
+            object-fit: cover; /* Covers the container while maintaining aspect ratio */
+            object-position: center; /* Centers the image */
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        }
+
+        /* Alternative styling if you want the full image to show (may have empty space) */
+        .photo-container.contain img {
+            object-fit: contain; /* Shows full image, may have empty space */
+        }
+
+        /* Placeholder styling when no image is present */
+        .photo-container .placeholder-text {
             font-family: 'Satisfy', cursive;
             font-size: 1.4em;
             color: var(--lavender-4);
             text-align: center;
             padding: 20px;
-            margin-bottom: 15px;
         }
 
         .photo-label {
@@ -266,6 +270,59 @@
             font-size: 0.95em;
             margin-top: 5px;
             font-weight: 300;
+        }
+
+        /* IMPROVED: Modal/Popup for full-size image view */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(156, 120, 192, 0.5);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.2);
         }
 
         /* Flip cards */
@@ -455,11 +512,23 @@
             .wishes-title {
                 font-size: 2.5em;
             }
+
+            .modal-close {
+                top: 15px;
+                right: 20px;
+                font-size: 30px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="particles" id="particlesContainer"></div>
+
+    <!-- Modal for popup image view -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
 
     <div class="wrapper">
         <header>
@@ -473,11 +542,11 @@
                 <h2 class="letter-header">To My Dearest</h2>
                 <div class="letter-content">
                     <p>
-                        Throughout my life, I've had lots of regrets, things that I'me not proud to look back on.
+                        Throughout my life, I've had lots of regrets, things that I'm not proud to look back on.
                         It's a list if you were to ask me.
                         But if there's anything I will forever be proud and grateful for, is meeting you.
-                        From the moment I met you, through all the ups and downs, I could never bring myself ot not love you.
-                        Your an amazing person and a just as amazing girlfriend.
+                        From the moment I met you, through all the ups and downs, I could never bring myself to not love you.
+                        You're an amazing person and a just as amazing girlfriend.
                         Wishing you the best
                     </p>
                 </div>
@@ -485,28 +554,37 @@
             </div>
 
             <div class="photo-collage">
-                <div class="photo-frame">
+                <!-- Photo 1 - Add your image here -->
+                <div class="photo-frame" onclick="openModal('photo1')">
                     <div class="photo-container">
-                        
+                        <!-- Replace the line below with your image -->
+                        <!-- <img id="photo1" src="photo1.jpg" alt="My Everything"> -->
+                        <img id="photo1" src="Screenshot 2026-02-10 at 22.10.30 copy.jpeg" alt="My Everything"
                     </div>
                     <div class="photo-label">My Everything</div>
                     <div class="photo-date">The girl of my dreams ✨</div>
                 </div>
 
-                <div class="photo-frame">
-                    <div class="photo-container1">
-                        [Add your favorite photo together]
+                <!-- Photo 2 - Add your image here -->
+                <div class="photo-frame" onclick="openModal('photo2')">
+                    <div class="photo-container">
+                        <!-- Replace the line below with your image -->
+                        <img id="photo2" src="Screenshot 2026-02-10 at 22.10.30 copy.jpeg" alt="Us Together">
+                        <!-- Remove placeholder if image is added -->
                     </div>
-                    <div class="photo-label">Must have hurt real bad when you feel form heaven mi-amore.</div>
+                    <div class="photo-label">Must have hurt real bad when you fell from heaven mi-amore.</div>
                     <div class="photo-date">Forever my favorite 💜</div>
                 </div>
 
-                <div class="photo-frame">
+                <!-- Photo 3 - Add your image here -->
+                <div class="photo-frame" onclick="openModal('photo3')">
                     <div class="photo-container">
-                        [Add another special memory]
+                        <!-- Replace the line below with your image -->
+                        <!-- <img id="photo3" src="photo3.jpg" alt="Pure Bliss"> -->
+                        <div class="placeholder-text">[Add another special memory]</div>
                     </div>
                     <div class="photo-label">Pure Bliss</div>
-                    <div class="photo-date">I'me honored to call you my girlfriend 🌸</div>
+                    <div class="photo-date">I'm honored to call you my girlfriend 🌸</div>
                 </div>
             </div>
 
@@ -529,7 +607,6 @@
                                 Your passion
                                 Your ever so pure heart
                                 and much more, which goes on and on.
-                                
                             </p>
                         </div>
                     </div>
@@ -558,7 +635,7 @@
                         </div>
                         <div class="flip-card-back">
                             <p>
-                                I look forward to enjoying every single moment we have moving onward and treasuing you till faith do us apart.
+                                I look forward to enjoying every single moment we have moving onward and treasuring you till faith do us apart.
                             </p>
                         </div>
                     </div>
@@ -574,7 +651,7 @@
                 </div>
                 <div class="wishes-content">
                     <p>
-                    My wish for you is that God grants you all your heart desires and all it will ever desire, the things seen and unseen, spoken and mearly thought of and all you will ever want and think of.
+                        My wish for you is that God grants you all your heart desires and all it will ever desire, the things seen and unseen, spoken and merely thought of and all you will ever want and think of.
                     </p>
                 </div>
             </div>
@@ -614,6 +691,30 @@
             
             particlesContainer.appendChild(particle);
         }
+
+        // Modal popup functions
+        function openModal(imageId) {
+            const img = document.getElementById(imageId);
+            // Only open modal if there's an actual image (not placeholder text)
+            if (img && img.tagName === 'IMG') {
+                const modal = document.getElementById('imageModal');
+                const modalImg = document.getElementById('modalImage');
+                modal.classList.add('active');
+                modalImg.src = img.src;
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
