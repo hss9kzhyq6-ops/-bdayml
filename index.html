@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Lavender Love, My Sweetheart✨ Happy 17th Birthday Irene❤️‍🔥</title>
+    <title>My Lavender Love ✨ Happy 17th Birthday</title>
     <link href="https://fonts.googleapis.com/css2?family=Satisfy&family=Josefin+Sans:wght@300;400;600;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
@@ -240,11 +240,6 @@
             object-fit: cover; /* Covers the container while maintaining aspect ratio */
             object-position: center; /* Centers the image */
             border-radius: 12px;
-        }
-
-        /* Alternative styling if you want the full image to show (may have empty space) */
-        .photo-container.contain img {
-            object-fit: contain; /* Shows full image, may have empty space */
         }
 
         /* Placeholder styling when no image is present */
@@ -524,7 +519,7 @@
 <body>
     <div class="particles" id="particlesContainer"></div>
 
-    <!-- Modal for popup image view -->
+    <!-- IMPROVED: Modal for popup image view -->
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="modal-close">&times;</span>
         <img class="modal-content" id="modalImage">
@@ -542,50 +537,44 @@
                 <h2 class="letter-header">To My Dearest</h2>
                 <div class="letter-content">
                     <p>
-                        Throughout my life, I've had lots of regrets, things that I'm not proud to look back on.
-                        It's a list if you were to ask me.
-                        But if there's anything I will forever be proud and grateful for, is meeting you.
-                        From the moment I met you, through all the ups and downs, I could never bring myself to not love you.
-                        You're an amazing person and a just as amazing girlfriend.
-                        Wishing you the best
+                        [Write your heartfelt message here - Tell her what she means to you, how she makes 
+                        every day special, and why this birthday is so important. Pour your heart out and let 
+                        her know just how deeply you care. Make every word count! 💜]
                     </p>
                 </div>
                 <div class="letter-signature">With All My Love 💕</div>
             </div>
 
             <div class="photo-collage">
-                <!-- Photo 1 - Add your image here -->
+                <!-- IMPROVED: Photo 1 with click-to-enlarge functionality -->
                 <div class="photo-frame" onclick="openModal('photo1')">
-                    <div class="photo-container">
-                        <!-- Replace the line below with your image -->
-                        <img id="photo1" src="Screenshot 2025-10-31 at 01.54.29.jpeg"
-                     
-                    </div>
-                    <div class="photo-label">My 
-                        Everything</div>
+               <div class="photo-container">
+                   <img id="photo1" src="Screenshot 2025-10-31 at 01.54.29.jpeg" alt="My Everything">
+            </div>
+                    <div class="photo-label">My Everything</div>
                     <div class="photo-date">The girl of my dreams ✨</div>
                 </div>
 
-                <!-- Photo 2 - Add your image here -->
+                <!-- IMPROVED: Photo 2 with click-to-enlarge functionality -->
                 <div class="photo-frame" onclick="openModal('photo2')">
                     <div class="photo-container">
-                        <!-- Replace the line below with your image -->
-                        <img id="photo2" src="Screenshot 2026-02-10 at 22.10.30 copy.jpeg">
-                        <!-- Remove placeholder if image is added -->
+                        <!-- To add your image, replace the placeholder-text div with:
+                             <img id="photo2" src="photo2.jpg" alt="Us Together"> -->
+                        <div class="placeholder-text">[Add your favorite photo together]</div>
                     </div>
-                    <div class="photo-label">Must have hurt real bad when you fell from heaven mi-amore.</div>
+                    <div class="photo-label">Us Against the World</div>
                     <div class="photo-date">Forever my favorite 💜</div>
                 </div>
 
-                <!-- Photo 3 - Add your image here -->
+                <!-- IMPROVED: Photo 3 with click-to-enlarge functionality -->
                 <div class="photo-frame" onclick="openModal('photo3')">
                     <div class="photo-container">
-                        <!-- Replace the line below with your image -->
-                        <!-- <img id="photo3" src="photo3.jpg" alt="Pure Bliss"> -->
+                        <!-- To add your image, replace the placeholder-text div with:
+                             <img id="photo3" src="photo3.jpg" alt="Special Memory"> -->
                         <div class="placeholder-text">[Add another special memory]</div>
                     </div>
                     <div class="photo-label">Pure Bliss</div>
-                    <div class="photo-date">I'm honored to call you my girlfriend 🌸</div>
+                    <div class="photo-date">Moments I'll treasure always 🌸</div>
                 </div>
             </div>
 
@@ -598,16 +587,8 @@
                         </div>
                         <div class="flip-card-back">
                             <p>
-                                Your smile
-                                Your hair
-                                Your fragrance
-                                Your radiance
-                                Your eyes
-                                Your figure
-                                Your reasoning
-                                Your passion
-                                Your ever so pure heart
-                                and much more, which goes on and on.
+                                [List the things you love about her - her laugh, her kindness, the way she 
+                                makes you feel, her quirks that make her special. Be specific and sweet! 💕]
                             </p>
                         </div>
                     </div>
@@ -636,7 +617,8 @@
                         </div>
                         <div class="flip-card-back">
                             <p>
-                                I look forward to enjoying every single moment we have moving onward and treasuring you till faith do us apart.
+                                [Talk about the future you see together - dreams, plans, adventures you want 
+                                to share. Let her know you're in this for the long haul! 💫]
                             </p>
                         </div>
                     </div>
@@ -652,7 +634,9 @@
                 </div>
                 <div class="wishes-content">
                     <p>
-                        My wish for you is that God grants you all your heart desires and all it will ever desire, the things seen and unseen, spoken and merely thought of and all you will ever want and think of.
+                        [Your birthday wishes here - Wish her happiness, love, success, and all the beautiful 
+                        things she deserves. Tell her what you hope this year brings for her and for both of you. 
+                        Make it magical! 🎂✨]
                     </p>
                 </div>
             </div>
@@ -693,7 +677,7 @@
             particlesContainer.appendChild(particle);
         }
 
-        // Modal popup functions
+        // IMPROVED: Modal popup functions for click-to-enlarge images
         function openModal(imageId) {
             const img = document.getElementById(imageId);
             // Only open modal if there's an actual image (not placeholder text)
